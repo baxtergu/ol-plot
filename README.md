@@ -13,6 +13,10 @@
 
 > 军事标绘功能，支持openlayers5。
 
+## what's enhanced?
+- 增加了删除单个 feature 的方法
+- 增加了 plot 文字 label 的支持
+
 ## build
 
 > 重要: Github 仓库的 /dist 文件夹只有在新版本发布时才会更新。如果想要使用 Github 上最新的源码，你需要自己构建。

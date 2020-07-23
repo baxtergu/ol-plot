@@ -1,6 +1,6 @@
 const { _package, banner, handleMinEsm } = require('./helper');
 const baseConfig = require('./rollup-base-config');
-const { uglify }  = require('rollup-plugin-uglify');
+const { terser } = require('rollup-plugin-terser');
 
 const config = Object.assign(baseConfig, {
   output: [
@@ -14,6 +14,6 @@ const config = Object.assign(baseConfig, {
   ]
 });
 
-config.plugins.push(uglify());
+config.plugins.push(terser());
 
 module.exports = config;

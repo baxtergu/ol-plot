@@ -11,7 +11,7 @@ import { Vector as VectorLayer } from 'ol/layer'
 import { Vector as VectorSource } from 'ol/source'
 import { asArray, asString } from 'ol/color'
 import { Point } from 'ol/geom'
-import { getSize, getBottomLeft, getTopRight, buffer } from 'ol/extent'
+// import { getSize, getBottomLeft, getTopRight, buffer } from 'ol/extent'
 
 import Feature from 'ol/Feature'
 
@@ -303,7 +303,7 @@ class PlotUtils {
           image['image']['imageRotation'] = olStyle_.getRotation()
           image['image']['rotateWithView'] = olStyle_.getRotateWithView()
           image['image']['imageOpacity'] = olStyle_.getOpacity()
-//        image['image']['snapToPixel'] = olStyle_.getSnapToPixel()
+          //        image['image']['snapToPixel'] = olStyle_.getSnapToPixel()
           image['image']['offset'] = olStyle_.getOrigin()
         } else if (olStyle_ instanceof RegularShape) {
           image['type'] = ''
@@ -315,7 +315,7 @@ class PlotUtils {
           image['image']['angle'] = olStyle_.getAngle()
           image['image']['stroke'] = this.getStroke_(olStyle_)
           image['image']['rotateWithView'] = olStyle_.getRotateWithView()
-//        image['image']['snapToPixel'] = olStyle_.getSnapToPixel()
+          //        image['image']['snapToPixel'] = olStyle_.getSnapToPixel()
         }
       }
     }
@@ -390,8 +390,7 @@ class PlotUtils {
     const overlays_ = this.map.getOverlays().getArray()
     if (layer) {
       let source = layer.getSource()
-      source.removeFeature(feature);
-
+      source.removeFeature(feature)
     }
     if (overlays_ && overlays_.length > 0) {
       let len = overlays_.length
@@ -517,16 +516,16 @@ class PlotUtils {
               }
             }
           })
-//        if (this.options['zoomToExtent'] && _extents && _extents.length > 0) {
-//          const _extent = this._getExtent(_extents)
-//          const size = this.map.getSize()
-//          const _view = this.map.getView()
-//          _view.fit(_extent, {
-//            size: size,
-//            duration: 800,
-//            maxZoom: (_view.getMaxZoom() || undefined)
-//          })
-//        }
+          // if (this.options['zoomToExtent'] && _extents && _extents.length > 0) {
+          //   const _extent = this._getExtent(_extents)
+          //   const size = this.map.getSize()
+          //   const _view = this.map.getView()
+          //   _view.fit(_extent, {
+          //     size: size,
+          //     duration: 800,
+          //     maxZoom: (_view.getMaxZoom() || undefined)
+          //   })
+          // }
         }
       }
     }
@@ -536,31 +535,31 @@ class PlotUtils {
    * get extent
    * @private
    */
-  _getExtent (extents, params = {}) {
-    const bbox = [ Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY,
-      Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY]
-    let _extent = extents.reduce(function (prev, coord) {
-      return [
-        Math.min(coord[0], prev[0]),
-        Math.min(coord[1], prev[1]),
-        Math.max(coord[2], prev[2]),
-        Math.max(coord[3], prev[3])
-      ]
-    }, bbox)
-    let size = getSize(_extent)
-    let adjust = typeof params['adjust'] === 'number' ? params['adjust'] : 0.2
-    let minWidth = typeof params['minWidth'] === 'number' ? params['minWidth'] : 0.05
-    let minHeight = typeof params['minHeight'] === 'number' ? params['minHeight'] : 0.05
-    if (size[0] <= minWidth || size[1] <= minHeight) {
-      let bleft = getBottomLeft(_extent) // 获取xmin,ymin
-      let tright = getTopRight(_extent) // 获取xmax,ymax
-      let xmin = bleft[0] - adjust
-      let ymin = bleft[1] - adjust
-      let xmax = tright[0] + adjust
-      let ymax = tright[1] + adjust
-      _extent = buffer([xmin, ymin, xmax, ymax], adjust)
-    }
-    return _extent
-  }
+  // _getExtent(extents, params = {}) {
+  //   const bbox = [Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY,
+  //   Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY]
+  //   let _extent = extents.reduce(function (prev, coord) {
+  //     return [
+  //       Math.min(coord[0], prev[0]),
+  //       Math.min(coord[1], prev[1]),
+  //       Math.max(coord[2], prev[2]),
+  //       Math.max(coord[3], prev[3])
+  //     ]
+  //   }, bbox)
+  //   let size = getSize(_extent)
+  //   let adjust = typeof params['adjust'] === 'number' ? params['adjust'] : 0.2
+  //   let minWidth = typeof params['minWidth'] === 'number' ? params['minWidth'] : 0.05
+  //   let minHeight = typeof params['minHeight'] === 'number' ? params['minHeight'] : 0.05
+  //   if (size[0] <= minWidth || size[1] <= minHeight) {
+  //     let bleft = getBottomLeft(_extent) // 获取xmin,ymin
+  //     let tright = getTopRight(_extent) // 获取xmax,ymax
+  //     let xmin = bleft[0] - adjust
+  //     let ymin = bleft[1] - adjust
+  //     let xmax = tright[0] + adjust
+  //     let ymax = tright[1] + adjust
+  //     _extent = buffer([xmin, ymin, xmax, ymax], adjust)
+  //   }
+  //   return _extent
+  // }
 }
 export default PlotUtils
