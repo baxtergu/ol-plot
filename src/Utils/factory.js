@@ -47,7 +47,7 @@ StyleFactory.prototype._getRegularShape = function (options) {
       radius1: ((typeof options['radius1'] === 'number') ? options['radius1'] : undefined),
       radius2: ((typeof options['radius2'] === 'number') ? options['radius2'] : undefined),
       angle: ((typeof options['angle'] === 'number') ? options['angle'] : 0),
-      snapToPixel: ((typeof options['snapToPixel'] === 'boolean') ? options['snapToPixel'] : true),
+//    snapToPixel: ((typeof options['snapToPixel'] === 'boolean') ? options['snapToPixel'] : true),
       stroke: (this._getStroke(options['stroke']) || undefined),
       rotation: ((typeof options['rotation'] === 'number') ? options['rotation'] : 0),
       rotateWithView: ((typeof options['rotateWithView'] === 'boolean') ? options['rotateWithView'] : false),
@@ -100,7 +100,7 @@ StyleFactory.prototype._getIcon = function (options) {
       offset: (options['offset'] && Array.isArray(options['offset']) && options['offset'].length === 2 ? options['offset'] : [0, 0]),
       offsetOrigin: (options['offsetOrigin'] ? options['offsetOrigin'] : 'top-left'),
       scale: ((typeof options['scale'] === 'number') ? options['scale'] : 1),
-      snapToPixel: (typeof options['snapToPixel'] === 'boolean' ? options['snapToPixel'] : true),
+//    snapToPixel: (typeof options['snapToPixel'] === 'boolean' ? options['snapToPixel'] : true),
       rotateWithView: (typeof options['rotateWithView'] === 'boolean' ? options['rotateWithView'] : false),
       opacity: (typeof options['imageOpacity'] === 'number' ? options['imageOpacity'] : 1),
       rotation: (typeof options['imageRotation'] === 'number' ? options['imageRotation'] : 0),
@@ -156,6 +156,7 @@ StyleFactory.prototype._getText = function (options) {
       textBaseline: ((options['textBaseline'] && typeof options['textBaseline'] === 'string') ? options['textBaseline'] : 'alphabetic'),
       rotateWithView: (typeof options['rotateWithView'] === 'boolean' ? options['rotateWithView'] : false),
       fill: this._getFill(options['textFill']),
+      overflow: typeof options['overflow'] === 'boolean' ? options['overflow'] : false,
       stroke: this._getStroke(options['textStroke'])
     })
     return text

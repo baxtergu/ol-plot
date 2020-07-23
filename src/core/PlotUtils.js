@@ -272,6 +272,7 @@ class PlotUtils {
         text['textAlign'] = olStyle_.getTextAlign()
         text['textBaseline'] = olStyle_.getTextBaseline()
         text['rotateWithView'] = olStyle_.getRotateWithView()
+        text['overflow'] = olStyle_.getOverflow()
         text['textFill'] = this.getFill_(olStyle_)
         text['textStroke'] = this.getStroke_(olStyle_)
       }
@@ -302,7 +303,7 @@ class PlotUtils {
           image['image']['imageRotation'] = olStyle_.getRotation()
           image['image']['rotateWithView'] = olStyle_.getRotateWithView()
           image['image']['imageOpacity'] = olStyle_.getOpacity()
-          image['image']['snapToPixel'] = olStyle_.getSnapToPixel()
+//        image['image']['snapToPixel'] = olStyle_.getSnapToPixel()
           image['image']['offset'] = olStyle_.getOrigin()
         } else if (olStyle_ instanceof RegularShape) {
           image['type'] = ''
@@ -314,7 +315,7 @@ class PlotUtils {
           image['image']['angle'] = olStyle_.getAngle()
           image['image']['stroke'] = this.getStroke_(olStyle_)
           image['image']['rotateWithView'] = olStyle_.getRotateWithView()
-          image['image']['snapToPixel'] = olStyle_.getSnapToPixel()
+//        image['image']['snapToPixel'] = olStyle_.getSnapToPixel()
         }
       }
     }
@@ -384,6 +385,24 @@ class PlotUtils {
     }
   }
 
+  removeFeature (feature) {
+    const layer = getLayerByLayerName(this.map, this.layerName)
+    const overlays_ = this.map.getOverlays().getArray()
+    if (layer) {
+      let source = layer.getSource()
+      source.removeFeature(feature);
+
+    }
+    if (overlays_ && overlays_.length > 0) {
+      let len = overlays_.length
+      for (let i = 0; i < len; i++) {
+        if (overlays_[i] && overlays_[i].get('isPlotText')) {
+          this.map.removeOverlay(overlays_[i])
+          i--
+        }
+      }
+    }
+  }
   /**
    * 获取所有的要素包含样式信息的GeoJSON
    * @returns {Array}
@@ -498,16 +517,16 @@ class PlotUtils {
               }
             }
           })
-          if (this.options['zoomToExtent'] && _extents && _extents.length > 0) {
-            const _extent = this._getExtent(_extents)
-            const size = this.map.getSize()
-            const _view = this.map.getView()
-            _view.fit(_extent, {
-              size: size,
-              duration: 800,
-              maxZoom: (_view.getMaxZoom() || undefined)
-            })
-          }
+//        if (this.options['zoomToExtent'] && _extents && _extents.length > 0) {
+//          const _extent = this._getExtent(_extents)
+//          const size = this.map.getSize()
+//          const _view = this.map.getView()
+//          _view.fit(_extent, {
+//            size: size,
+//            duration: 800,
+//            maxZoom: (_view.getMaxZoom() || undefined)
+//          })
+//        }
         }
       }
     }

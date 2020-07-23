@@ -1,5 +1,7 @@
 # openlayers 扩展标绘V3.0.0
 
+> Forked from [https://github.com/sakitam-fdd/ol-plot](https://github.com/sakitam-fdd/ol-plot)
+
 > This item has been turned into internal maintenance and this warehouse is no longer updated.
 
 [![Build Status](https://travis-ci.org/sakitam-fdd/ol-plot.svg?branch=master)](https://www.travis-ci.org/sakitam-fdd/ol-plot)
